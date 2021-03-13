@@ -19,6 +19,10 @@ Deploy and configure an Apache Load Balancer for Tooling Website solution buildi
 >sudo apt install apache2 -y
 >sudo apt-get install libxml2-dev
 
+![Screenshot](img/apache-install.JPG)
+
+![Screenshot](img/apache-install2.JPG)
+
 #Enable following modules:
 >sudo a2enmod rewrite
 >sudo a2enmod proxy
@@ -33,9 +37,11 @@ Deploy and configure an Apache Load Balancer for Tooling Website solution buildi
 Check the status of Apache2 to make sure it is up and running 
 >sudo systemctl status apache2
 
+![Screenshot](img/apache-status.JPG)
 * Configure the load balancer as follows
 >sudo vi /etc/apache2/sites-available/000-default.conf
 
+![Screenshot](img/lb-config.JPG)
 
 * Try other methods, like: bybusyness, byrequests, heartbeat
 
