@@ -50,7 +50,7 @@ Check the status of Apache2 to make sure it is up and running
 * Open /etc/hosts on the load balancer server.            sudo vi /etc/hosts
 * Add 2 records into this file with Local IP address and arbitrary name for both of the Web Servers <WebServer1-Private-IP-Address>Web1 <WebServer2-Private-IP-Address> Web2
 
-
+5815EFA4-BC3C-4A00-BB45-02B2A7DF6E5A.png
 
 
 * Update the Load Balancer configuration file with the names instead of IP addresses.
