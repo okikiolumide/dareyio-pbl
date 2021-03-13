@@ -42,7 +42,7 @@ Check the status of Apache2 to make sure it is up and running
 
 * Try to access the Load balacer’s public IP address or Public DNS name using a browser to verify the configuration is correct:
 
-
+![Screenshot](CA59F088-A89E-4B5D-999F-C3B5EDB845B2.png)
 
 **Optional Step - Configuration of Local DNS Names Resolution**
 
@@ -55,10 +55,11 @@ Check the status of Apache2 to make sure it is up and running
 
 * Update the Load Balancer configuration file with the names instead of IP addresses.
 
+![Screenshot](91C91EF3-6D0E-4B41-B4EE-57ED306C111F.jpeg)
 
+* Try to curl the Web Servers from LOad balancer locally using curl http://Web1 or curl http://Web2 - it shall work.     Note: this is only internal configuration and it is also local to the LB server, these names will neither be ‘resolvable’ from other servers internally nor from the Internet.
 
-* Try to curl theWeb Servers from LOad balancer locally using curl http://Web1 or curl http://Web2 - it shall work.     Note: this is only internal configuration and it is also local to the LB server, these names will neither be ‘resolvable’ from other servers internally nor from the Internet.
-
+![Screenshot](8966C88D-3E26-4E66-9898-FE6582A92395.jpeg)
 
 **BLOCKERS**
 1. The implementation of this project was quite easy. I did not encounter any technical challenge.
