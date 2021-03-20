@@ -14,17 +14,20 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 - Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and name it “Jenkins”
 - Install JDK (since Jenkins is a Java-based application)
 
->sudo apt update 
+> sudo apt update 
 
->sudo apt install default-jdk-headless
+> sudo apt install default-jdk-headless
 
  - Install Jenkins
 
-wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
+> wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+> sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
     /etc/apt/sources.list.d/jenkins.list'
->sudo apt update
->sudo apt-get install jenkins
+    
+> sudo apt update
+
+> sudo apt-get install jenkins
 
 - Check Status of Jenkins to ensure it is up and running
 - Create a new inbound rule in the Jenkins server security group to open TCP port 8080
@@ -52,11 +55,11 @@ In configuration of the Jenkins freestyle project choose Git repository, provide
 
 - Make some change in any file in the GitHub repository (e.g. README.MD file) and push the changes to the master branch. You will see that a new build has been launched automatically (by webhook) and you can see its results - artifacts, saved on Jenkins server
 
-**An automated Jenkins job that receives files from GitHub by webhook trigger has now been configured (this method is considered as ‘push’ because the changes are being ‘pushed’ and files transfer is initiated by GitHub). There are also other methods: trigger one job (downstreadm) from another (upstream), poll GitHub periodically and others.
+**An automated Jenkins job that receives files from GitHub by webhook trigger has now been configured (this method is considered as ‘push’ because the changes are being ‘pushed’ and files transfer is initiated by GitHub). There are also other methods: trigger one job (downstreadm) from another (upstream), poll GitHub periodically and others.**
 
-By default, the artifacts are stored on Jenkins server locally
+- By default, the artifacts are stored on Jenkins server locally
 
->ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
+> ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
 
 ## 3. Configure Jenkins to copy files to NFS server via SSH
 
