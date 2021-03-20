@@ -1,10 +1,10 @@
-**Load Balancer Solution With Apache**
+# Load Balancer Solution With Apache
 
-**Task**
+## Task
 
 Deploy and configure an Apache Load Balancer for Tooling Website solution building on project 7 architecture on a separate Ubuntu EC2 instance.
 
-**Prerequisites**
+## Prerequisites
 >Two RHEL8 Web Servers
 >One MySQL DB Server (based on Ubuntu 20.04)
 >One RHEL8 NFS server
@@ -67,11 +67,11 @@ Check the status of Apache2 to make sure it is up and running
 
 ![Screenshot](8966C88D-3E26-4E66-9898-FE6582A92395.jpeg)
 
-**BLOCKERS**
+## BLOCKERS
 1. The implementation of this project was quite easy. I did not encounter any technical challenge.
 2. The only blocker I had was having to switch to using a mobile device to complete the project due to some faulty parts of my laptop and this was really not flexible enough to implement all the extra tasks.
 
-**RESOURCES**
+## RESOURCES
 1. https://darey.io
 2. https://stackoverflow.com/questions/10494431/sticky-and-non-sticky-sessions
 3. https://access.redhat.com/solutions/90093
