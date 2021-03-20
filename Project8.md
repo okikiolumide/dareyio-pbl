@@ -14,7 +14,7 @@ Deploy and configure an Apache Load Balancer for Tooling Website solution buildi
 * Create an Ubuntu Server 20.04 EC2 instance
 * Open TCP port 80 on by creating an Inbound Rule in Security Group
 * Install Apache Load Balancer on The server and configure it to point traffic coming to LB to both Web Servers:
-#Install apache2
+- Install apache2
 >sudo apt update
 >sudo apt install apache2 -y
 >sudo apt-get install libxml2-dev
@@ -23,7 +23,7 @@ Deploy and configure an Apache Load Balancer for Tooling Website solution buildi
 
 ![Screenshot](img/apache-install2.JPG)
 
-#Enable following modules:
+- Enable following modules:
 >sudo a2enmod rewrite
 >sudo a2enmod proxy
 >sudo a2enmod proxy_balancer
@@ -31,10 +31,10 @@ Deploy and configure an Apache Load Balancer for Tooling Website solution buildi
 >sudo a2enmod headers
 >sudo a2enmod lbmethod_bytraffic
 
-#Restart apache2 service
+- Restart apache2 service
 >sudo systemctl restart apache2
 
-Check the status of Apache2 to make sure it is up and running 
+- Check the status of Apache2 to make sure it is up and running 
 >sudo systemctl status apache2
 
 ![Screenshot](img/apache-status.JPG)
