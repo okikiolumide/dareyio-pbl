@@ -75,7 +75,8 @@ In configuration of the Jenkins freestyle project choose Git repository, provide
 ![Screenshot](img/20210318_180538500_iOS.jpg)
 
 - Make some change in any file in the GitHub repository (e.g. README.MD file) and push the changes to the master branch. You will see that a new build has been launched automatically (by webhook) and you can see its results - artifacts, saved on Jenkins server
-![Screenshot](img/autobuild.jpg)
+
+![Screenshot](img/autobuild.JPG)
 
 
 **An automated Jenkins job that receives files from GitHub by webhook trigger has now been configured (this method is considered as ‘push’ because the changes are being ‘pushed’ and files transfer is initiated by GitHub). There are also other methods: trigger one job (downstreadm) from another (upstream), poll GitHub periodically and others.**
