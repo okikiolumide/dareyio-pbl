@@ -125,7 +125,7 @@ To make sure that the files in /mnt/apps have been udated - connect via SSH/Putt
 
 # BLOCKERS
 Console Output produced an UNSTABLE status with Error: Exception when pubishing,exception message [Permission Denied]
-Solution: Changed ownership of /var/www on webserver servers using sudo chown -R ec2-user:ec2-user /var/www
+- Solution: Changed ownership of /var/www on webserver servers using sudo chown -R ec2-user:ec2-user /var/www
 
 # RESOURCES
 1. https://darey.io
