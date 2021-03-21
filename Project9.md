@@ -7,7 +7,7 @@ In this project, Jenkins CI capabilities would be utilized to make changes to th
 ## TASK
 
 This project will enhance the architecture prepared in Project 8 by adding a Jenkins server, Configure a job to automatically deploy source codes and changes from Git to NFS server. Below is the updated Project architecture 
-![alt text](img/add_jenkins.png)
+![alt text](img/add_jenkins.png )
 
 
 ## Install Jenkins
@@ -113,8 +113,8 @@ To make sure that the files in /mnt/apps have been udated - connect via SSH/Putt
 ![Screenshot](img/fnal_reslt.JPG)
 
 # BLOCKERS
-Error
-Solution: Changed ownership on webserver servers
+Console Output produced an UNSTABLE status with Error: Exception when pubishing,exception message [Permission Denied]
+Solution: Changed ownership of /var/www on webserver servers using sudo chown -R ec2-user:ec2-user /var/www
 
 # RESOURCES
 1. https://darey.io
