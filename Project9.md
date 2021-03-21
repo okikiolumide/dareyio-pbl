@@ -7,8 +7,8 @@ In this project, Jenkins CI capabilities would be utilized to make changes to th
 ## TASK
 
 This project will enhance the architecture prepared in Project 8 by adding a Jenkins server, Configure a job to automatically deploy source codes and changes from Git to NFS server. Below is the updated Project architecture 
-![alt text](img/add_jenkins.png )
 
+<img src="img/add_jenkins.png" width="800" height="600">
 
 ## Install Jenkins
 - Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and name it “Jenkins”
@@ -18,7 +18,7 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 
 > sudo apt install default-jdk-headless
 
-![alt text](img/20210315_231929961_iOS.jpg)
+ <img src="img/20210315_231929961_iOS.jpg" width="600" height="600">
  - Install Jenkins
 
 > wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
@@ -30,11 +30,11 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 
 > sudo apt-get install jenkins
 
-![Screenshot](img/20210315_233011197_iOS.jpg)
+<img src="img/20210315_233011197_iOS.jpg" width="600" height="600">
 
 - Check Status of Jenkins to ensure it is up and running
 
-![Screenshot](img/20210315_233104545_iOS.jpg)
+ <img src="img/20210315_233104545_iOS.jpg" width="600" height="600">
 
 - Create a new inbound rule in the Jenkins server security group to open TCP port 8080
 - Start initial Jenkins setup by accessing the Jenkins client side from a browser using
@@ -46,6 +46,7 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 - Select the prompt to install suggested plugins when prompted to choose plugins to install
 Once plugins installation is done - create an admin user Then the installation is completed!
+
 ![Screenshot](img/20210315_233950144_iOS.jpg)
 
 ## 2. Configure Jenkins to retrieve source codes from GitHub using Webhooks
@@ -60,8 +61,8 @@ In configuration of the Jenkins freestyle project choose Git repository, provide
 - Open the build and check in “Console Output” if it has run successfully.
 *Note: This build does not produce anything and it runs only when we trigger it manually.
 
-![Screenshot](img/20210318_180346953_iOS.jpg)
-![Screenshot](img/20210318_180358600_iOS.jpg)
+ <img src="img/20210318_180346953_iOS.jpg" width="800" height="600">
+<img src="img/20210318_180358600_iOS.jpg" width="800" height="600">
 
 - To trigger builds automatically, Click “Configure” the job/project and add these two configurations
         Configure triggering the job from GitHub webhook:
