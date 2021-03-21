@@ -4,13 +4,13 @@ The aim of this project is to automate routine tasks using a free and open-sourc
 
 In this project, Jenkins CI capabilities would be utilized to make changes to the source code in Github https://github.com/<yourname>/tooling which will automatically be updated to the Tooling Website.
 
-## Tasks
+## TASK
 
 This project will enhance the architecture prepared in Project 8 by adding a Jenkins server, Configure a job to automatically deploy source codes and changes from Git to NFS server. Below is the updated Project architecture 
+![alt text](img/add_jenkins.png)
 
 
-
-## INSTALL JENKINS
+## Install Jenkins
 - Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and name it “Jenkins”
 - Install JDK (since Jenkins is a Java-based application)
 
@@ -18,6 +18,7 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 
 > sudo apt install default-jdk-headless
 
+![alt text](img/20210315_231929961_iOS.jpg)
  - Install Jenkins
 
 > wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
@@ -25,19 +26,27 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 > sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
     /etc/apt/sources.list.d/jenkins.list'
     
-> sudo apt update
+> sudo apt update 
 
 > sudo apt-get install jenkins
 
+![Screenshot](img/20210315_233011197_iOS.jpg)
+
 - Check Status of Jenkins to ensure it is up and running
+
+![Screenshot](img/20210315_233104545_iOS.jpg)
+
 - Create a new inbound rule in the Jenkins server security group to open TCP port 8080
 - Start initial Jenkins setup by accessing the Jenkins client side from a browser using
 http://<Jenkins-Server-Public-IP-Address-or-Public-DNS-Name>:8080
 - You will be prompted to provide a default admin password. Retrieve it from your server:
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
+![Screenshot](img/20210315_234219665_iOS.jpg)
+
 - Select the prompt to install suggested plugins when prompted to choose plugins to install
 Once plugins installation is done - create an admin user Then the installation is completed!
+![Screenshot](img/20210315_233950144_iOS.jpg)
 
 ## 2. Configure Jenkins to retrieve source codes from GitHub using Webhooks
 
@@ -49,17 +58,25 @@ In configuration of the Jenkins freestyle project choose Git repository, provide
 - Open the build and check in “Console Output” if it has run successfully.
 *Note: This build does not produce anything and it runs only when we trigger it manually.
 
+![Screenshot](img/20210318_180346953_iOS.jpg)
+![Screenshot](img/20210318_180358600_iOS.jpg)
+
 - To trigger builds automatically, Click “Configure” the job/project and add these two configurations
         Configure triggering the job from GitHub webhook:
   Configure “Post-build Actions” to archive all the files - files resulted from a build are called “artifacts”.
+![Screenshot](img/20210318_180538500_iOS.jpg)
 
 - Make some change in any file in the GitHub repository (e.g. README.MD file) and push the changes to the master branch. You will see that a new build has been launched automatically (by webhook) and you can see its results - artifacts, saved on Jenkins server
+
+
 
 **An automated Jenkins job that receives files from GitHub by webhook trigger has now been configured (this method is considered as ‘push’ because the changes are being ‘pushed’ and files transfer is initiated by GitHub). There are also other methods: trigger one job (downstreadm) from another (upstream), poll GitHub periodically and others.**
 
 - By default, the artifacts are stored on Jenkins server locally
 
 > ls /var/lib/jenkins/jobs/tooling_github/builds/<build_number>/archive/
+
+![Screenshot](img/20210315_233011197_iOS.jpg)
 
 ## 3. Configure Jenkins to copy files to NFS server via SSH
 
@@ -84,6 +101,7 @@ Configure the job/project to copy artifacts over to NFS server.
 >Remote directory - /mnt/apps since our Web Servers use it as a mointing point to retrieve files from the NFS server
 - Test the configuration and make sure the connection returns Success. Remember, that TCP port 22 on NFS server must be open to receive SSH connections.
 
+![Screenshot](img/connnection test.JPG)
 
 - Save the configuration, open your Jenkins job/project configuration page and add another one “Post-build Action”
 Configure it to send all files probuced by the build into our previouslys define remote directory. In our case we want to copy all files and directories - so we use **.
