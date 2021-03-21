@@ -19,6 +19,7 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 > sudo apt install default-jdk-headless
 
  <img src="img/20210315_231929961_iOS.jpg" width="600" height="600">
+ 
  - Install Jenkins
 
 > wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
@@ -52,9 +53,11 @@ Once plugins installation is done - create an admin user Then the installation i
 ## 2. Configure Jenkins to retrieve source codes from GitHub using Webhooks
 
 - Enable webhooks in the GitHub repository settings
+
 ![Screenshot](img/git_webhook.JPG)
 
 - Go to Jenkins web console, click “New Item” and create a “Freestyle project”
+ 
 ![Screenshot](img/20210318_180204745_iOS.jpg)
 
 - Connect the GitHub repository, by providing its URL which can be copied from the repository 
@@ -72,6 +75,7 @@ In configuration of the Jenkins freestyle project choose Git repository, provide
 - To trigger builds automatically, Click “Configure” the job/project and add these two configurations
         Configure triggering the job from GitHub webhook:
   Configure “Post-build Actions” to archive all the files - files resulted from a build are called “artifacts”.
+  
 ![Screenshot](img/20210318_180538500_iOS.jpg)
 
 - Make some change in any file in the GitHub repository (e.g. README.MD file) and push the changes to the master branch. You will see that a new build has been launched automatically (by webhook) and you can see its results - artifacts, saved on Jenkins server
