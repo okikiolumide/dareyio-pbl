@@ -55,8 +55,13 @@ Once plugins installation is done - create an admin user Then the installation i
 ![Screenshot](img/git_webhook.JPG)
 
 - Go to Jenkins web console, click “New Item” and create a “Freestyle project”
+![Screenshot](img/20210318_180204745_iOS.jpg)
+
 - Connect the GitHub repository, by providing its URL which can be copied from the repository 
 In configuration of the Jenkins freestyle project choose Git repository, provide the link to the Tooling GitHub repository and credentials (user/password) so Jenkins could access files in the repository.
+
+![Screenshot](img/20210318_180108006_iOS.jpg)
+
 - Save the configuration and try to run the build. For now we can only do it manually. Click “Build Now” button. If the build is successful, it will be seen under build #1
 - Open the build and check in “Console Output” if it has run successfully.
 *Note: This build does not produce anything and it runs only when we trigger it manually.
@@ -70,7 +75,7 @@ In configuration of the Jenkins freestyle project choose Git repository, provide
 ![Screenshot](img/20210318_180538500_iOS.jpg)
 
 - Make some change in any file in the GitHub repository (e.g. README.MD file) and push the changes to the master branch. You will see that a new build has been launched automatically (by webhook) and you can see its results - artifacts, saved on Jenkins server
-
+![Screenshot](img/autobuild.jpg)
 
 
 **An automated Jenkins job that receives files from GitHub by webhook trigger has now been configured (this method is considered as ‘push’ because the changes are being ‘pushed’ and files transfer is initiated by GitHub). There are also other methods: trigger one job (downstreadm) from another (upstream), poll GitHub periodically and others.**
