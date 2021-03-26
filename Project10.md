@@ -7,6 +7,8 @@ This project consists of two parts:
 1. Configuration of Nginx as a Load Balancer
 2. Register a new domain name and configure secured connection using SSL/TLS certificates
 
+![alt text](img/proj10/nginx_lb.png)
+
 ## Project Implementation
 ### Part 1 - Configuration of Nginx as a Load Balancer
 
@@ -21,6 +23,8 @@ This project consists of two parts:
                 sudo apt update
 
                 sudo apt install nginx
+     
+     ![alt text](img/proj10/nginx-start.JPG)
      
    - Configure Nginx LB using Web Servers’ names defined in /etc/hosts
  
@@ -44,6 +48,8 @@ This project consists of two parts:
                 #comment out this line
                 #include /etc/nginx/sites-enabled/*;
 
+![alt text](</img/proj10/nginx_conf file.JPG>)
+
   - Restart Nginx and make sure the service is up and running
  
                 sudo systemctl restart nginx
@@ -52,11 +58,15 @@ This project consists of two parts:
                 
                 sudo systemctl status nginx
 
+![alt text](img/proj10/nginx-status.JPG)
+
 ### Part 2 - Register a new domain name and configure secured connection using SSL/TLS certificates
 
 a.  Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
 
 b.  Assign an Elastic IP to the Nginx LB server 
+
+![alt text](img/proj10/elastic-ip.JPG)
 
 c.  Associate the domain name with this Elastic IP by Updating A record in your registrar to point to Nginx LB using Elastic IP address
  
@@ -70,18 +80,28 @@ e. Install certbot and request for an SSL/TLS certificate
   
          sudo systemctl status snapd
     
+    ![alt text](img/proj10/snapd-status.JPG)
+    
   - Install certbot
   
          sudo snap install --classic certbot
-	 
+
+![alt text](img/proj10/classic-certbot.JPG)
+
 f. Request your certificate (just follow the certbot instructions - you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure it is updated)
 
         sudo ln -s /snap/bin/certbot /usr/bin/certbot
         sudo certbot --nginx
         
+![alt text](</img/proj10/certbot-success 2.JPG>)
+![alt text](img/proj10/certbot-success.JPG)
+
 Test secured access to your Web Solution by trying to reach https://<your-domain-name.com>
 
 You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string. Click on the padlock icon and you can see the details of the certificate issued for your website.
+
+![alt text](img/proj10/sslconf.JPG)
+![alt text](img/proj10/ssl-certificate.JPG)
 
 g. Set up periodical renewal of your SSL/TLS certificate
 
@@ -90,6 +110,8 @@ g. Set up periodical renewal of your SSL/TLS certificate
  - Test the renewal command in dry-run mode
 
         sudo certbot renew --dry-run
+
+![alt text](img/proj10/renewal-command.JPG)
 
 Best practice is to have a scheduled job that to run renew command periodically. Configure a cronjob to run the command twice a day.
 
