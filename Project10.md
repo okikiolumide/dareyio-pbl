@@ -1,5 +1,5 @@
 # Load Balancer Solution With Nginx and SSL/TLS
-In this project we will configure an Nginx Load Balancer solution. It is also extremely important to ensure that connections to your Web solutions are secure and information is encrypted in transit - we will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
+In this project I will configure an Nginx Load Balancer solution. It is also extremely important to ensure that connections to the Web solutions are secure and information is encrypted in transit - This will also cover connection over secured HTTP (HTTPS protocol), its purpose and what is required to implement it.
 
 ## Task
 This project consists of two parts:
@@ -56,13 +56,13 @@ This project consists of two parts:
 
 a.  Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
 
-b.  Assign an Elastic IP to your Nginx LB server 
+b.  Assign an Elastic IP to the Nginx LB server 
 
-c.  Associate your domain name with this Elastic IP by Updating A record in your registrar to point to Nginx LB using Elastic IP address
+c.  Associate the domain name with this Elastic IP by Updating A record in your registrar to point to Nginx LB using Elastic IP address
  
 d.  Configure Nginx to recognize your new domain name
 
-- Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com
+- Update the nginx.conf with *server_name www.<your-domain-name.com>* instead of *server_name www.domain.com*
 
 e. Install certbot and request for an SSL/TLS certificate
 
@@ -73,7 +73,8 @@ e. Install certbot and request for an SSL/TLS certificate
   - Install certbot
   
          sudo snap install --classic certbot
-f. Request your certificate (just follow the certbot instructions - you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure you have updated it on step 4)
+	 
+f. Request your certificate (just follow the certbot instructions - you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure it is updated)
 
         sudo ln -s /snap/bin/certbot /usr/bin/certbot
         sudo certbot --nginx
@@ -85,15 +86,17 @@ You shall be able to access your website by using HTTPS protocol (that uses TCP 
 g. Set up periodical renewal of your SSL/TLS certificate
 
 *By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently.*
+
  - Test the renewal command in dry-run mode
 
         sudo certbot renew --dry-run
 
-Best pracice is to have a scheduled job that to run renew command periodically. Let us configure a cronjob to run the command twice a day.
+Best practice is to have a scheduled job that to run renew command periodically. Configure a cronjob to run the command twice a day.
 
-To do so, lets edit the crontab file with the following command:
+ - Edit the crontab file with the following command:
 
         crontab -e
+	
         Add following line:
 
         * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
