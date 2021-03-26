@@ -8,7 +8,7 @@ This project consists of two parts:
 2. Register a new domain name and configure secured connection using SSL/TLS certificates
 
 ## Project Implementation
-1. Configuration of Nginx as a Load Balancer
+### Part 1 - Configuration of Nginx as a Load Balancer
 
   a. Create an EC2 VM based on Ubuntu Server 20.04 LTS and name it Nginx LB (do not forget to open TCP port 80 for HTTP connections, also open TCP port 443 - this port is used for secured HTTPS connections)
   
@@ -22,7 +22,7 @@ This project consists of two parts:
 
                 sudo apt install nginx
      
- d. Configure Nginx LB using Web Servers’ names defined in /etc/hosts
+   - Configure Nginx LB using Web Servers’ names defined in /etc/hosts
  
                sudo vi /etc/nginx/nginx.conf
 
@@ -44,7 +44,7 @@ This project consists of two parts:
                 #comment out this line
                 #include /etc/nginx/sites-enabled/*;
 
- e. Restart Nginx and make sure the service is up and running
+  - Restart Nginx and make sure the service is up and running
  
                 sudo systemctl restart nginx
                 
@@ -52,7 +52,7 @@ This project consists of two parts:
                 
                 sudo systemctl status nginx
 
-## Part 2 - Register a new domain name and configure secured connection using SSL/TLS certificates
+### Part 2 - Register a new domain name and configure secured connection using SSL/TLS certificates
 
 a.  Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
 
