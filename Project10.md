@@ -56,15 +56,15 @@ This project consists of two parts:
 
 a.  Register a new domain name with any registrar of your choice in any domain zone (e.g. .com, .net, .org, .edu, .info, .xyz or any other)
 
-b.  Assign an Elastic IP to your Nginx LB server and associate your domain name with this Elastic IP
+b.  Assign an Elastic IP to your Nginx LB server 
 
- -  Update A record in your registrar to point to Nginx LB using Elastic IP address
+c.  Associate your domain name with this Elastic IP by Updating A record in your registrar to point to Nginx LB using Elastic IP address
  
-c.  Configure Nginx to recognize your new domain name
+d.  Configure Nginx to recognize your new domain name
 
 - Update your nginx.conf with server_name www.<your-domain-name.com> instead of server_name www.domain.com
 
-d. Install certbot and request for an SSL/TLS certificate
+e. Install certbot and request for an SSL/TLS certificate
 
   - Make sure snapd service is active and running
   
@@ -73,7 +73,7 @@ d. Install certbot and request for an SSL/TLS certificate
   - Install certbot
   
          sudo snap install --classic certbot
-e. Request your certificate (just follow the certbot instructions - you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure you have updated it on step 4)
+f. Request your certificate (just follow the certbot instructions - you will need to choose which domain you want your certificate to be issued for, domain name will be looked up from nginx.conf file so make sure you have updated it on step 4)
 
         sudo ln -s /snap/bin/certbot /usr/bin/certbot
         sudo certbot --nginx
@@ -82,9 +82,9 @@ Test secured access to your Web Solution by trying to reach https://<your-domain
 
 You shall be able to access your website by using HTTPS protocol (that uses TCP port 443) and see a padlock pictogram in your browser’s search string. Click on the padlock icon and you can see the details of the certificate issued for your website.
 
-f. Set up periodical renewal of your SSL/TLS certificate
+g. Set up periodical renewal of your SSL/TLS certificate
 
-By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently.
+*By default, LetsEncrypt certificate is valid for 90 days, so it is recommended to renew it at least every 60 days or more frequently.*
  - Test the renewal command in dry-run mode
 
         sudo certbot renew --dry-run
