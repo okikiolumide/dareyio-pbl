@@ -74,6 +74,8 @@ d.  Configure Nginx to recognize your new domain name
 
 - Update the nginx.conf with *server_name www.<your-domain-name.com>* instead of *server_name www.domain.com*
 
+![alt text](</img/proj10/nginx_conf server name.JPG>)
+
 e. Install certbot and request for an SSL/TLS certificate
 
   - Make sure snapd service is active and running
@@ -123,6 +125,9 @@ Best practice is to have a scheduled job that to run renew command periodically.
 
         * */12 * * *   root /usr/bin/certbot renew > /dev/null 2>&1
 
+## BLOCKERS
+
+None
 
 ## RESOURCES
 
@@ -130,5 +135,6 @@ Best practice is to have a scheduled job that to run renew command periodically.
 2. https://dev.to/maybebored/how-to-set-up-a-custom-domain-for-your-ec2-instance-without-using-route53-f9
 3. https://crontab.guru/
 4. https://youtu.be/4g1i0ylvx3A
+5. https://darey.io
 
 	
