@@ -139,7 +139,7 @@ The updated Ansible architecture now looks like this:
 
 ![image](https://user-images.githubusercontent.com/30922643/113473729-424dcc00-9463-11eb-9b9d-3361c729a010.png)
 
-*Optional step - Repeat once again
+*Optional step - Repeat once again, 
 Update your ansible playbook with some new Ansible tasks and go through the full checkout -> change codes -> commit -> PR -> merge -> build -> ansible-playbook cycle again to see how easily you can manage a servers fleet of any size with just one command!*
 
 ## BLOCKERS
