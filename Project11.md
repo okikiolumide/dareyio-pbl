@@ -38,6 +38,9 @@ Ideally, the webservers would be located inside a secured network which cannot b
 *Note: Trigger Jenkins project execution only for /main (master) branch.*
 *To prevent reconfiguring the Github webhook with a new IP address after stop/starting the Jenkins-Ansible server, allocate an elastic IP address to the Jenkins-Ansible server
 
+![jenkins_ansible](https://user-images.githubusercontent.com/30922643/113473598-55ac6780-9462-11eb-9b9c-45fc0036b887.png)
+
+
 ### Step 3: Begin Ansible Development
 
 - Create a new branch that will be used for development of a new feature in the ansible-config-mgt GitHub repository.
@@ -48,3 +51,103 @@ Ideally, the webservers would be located inside a secured network which cannot b
 - Create a directory and name it `inventory` - it will be used to keep the hosts organised.
 - Within the playbooks folder, create the first playbook, and name it `common.yml`
 - Within the inventory folder, create an inventory file (.yml) for each environment (Development, Staging Testing and Production) `dev`, `staging`, `uat`, and `prod` respectively.
+
+### Step 4: Set up an Ansible Inventory
+
+An Ansible inventory file defines the hosts and groups of hosts upon which commands, modules, and tasks in a playbook operate.
+The intention is to execute Linux commands on remote hosts, and ensure that it is the intended configuration on a particular server that occurs. It is important to have a way to organize the hosts in such an Inventory
+
+*Note: Ansible uses TCP port 22 by default, which means it needs to ssh into target servers from Jenkins-Ansible host - for this you need to copy your private (.pem) key and provide a path to it so Ansible could use it to connect. Do not forget to change permissions to your private key chmod 400 key.pem, otherwise EC2 will not accept the key. Also notice, that your Load Balancer user is ubuntu and user for RHEL-based servers is ec2-user.*
+
+Update your inventory/dev.yml file with this:
+
+      [nfs]
+      <NFS-Server-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+
+      [webservers]
+      <Web-Server1-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+      <Web-Server2-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+
+      [db]
+      <Database-Private-IP-Address> ansible_ssh_user='ec2-user' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+
+      [lb]
+      <Load-Balancer-Private-IP-Address> ansible_ssh_user='ubuntu' ansible_ssh_private_key_file=<path-to-.pem-private-key>
+      
+### Step 5: Create a Common Playbook
+
+In `common.yml` playbook write configuration for repeatable, re-usable, and multi-machine tasks that is common to systems within the infrastructure.
+
+Update the `playbooks/common.yml` file with following code:
+
+                  ---
+                  - name: update web, nfs and db servers
+                    hosts: webservers, nfs, db
+                    remote_user: ec2-user
+                    become: yes
+                    become_user: root
+                    tasks:
+                    - name: ensure wireshark is at the latest version
+                      yum:
+                        name: wireshark
+                        state: latest
+
+                  - name: update LB server
+                    hosts: lb
+                    remote_user: ubuntu
+                    become: yes
+                    become_user: root
+                    tasks:
+                    - name: ensure wireshark is at the latest version
+                      apt:
+                        name: wireshark
+                        state: latest
+                        
+  Feel free to update this playbook with following tasks:
+
+Create a directory and a file inside it
+Change timezone on all servers
+Run some shell script               
+
+### Step 6: Update GIT with the latest code
+
+Commit your code into GitHub:
+
+use git commands to add, commit and push your branch to GitHub.
+
+            git status
+
+            git add <selected files>
+
+            git commit -m "commit message"
+            
+- Create a Pull request (PR)
+- Wear a hat of another developer for a second, and act as a reviewer.
+- If the reviewer is happy with your new feature development, merge the code to the master branch.
+- Head back on your terminal, checkout from the feature branch into the master, and pull down the latest changes.
+- Once your code changes appear in master branch - Jenkins will do its job and save all the files (build artifacts) to `/var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/` directory on Jenkins-Ansible server.
+
+### Step 7: Run first Ansible test
+
+ Execute `ansible-playbook` command and verify if your playbook actually works using:
+ 
+       sudo ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/inventory/dev.yml /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/playbooks/common.yml
+
+Go to each of the servers and check if wireshark has been installed by running `which wireshark` or `wireshark --version`
+
+The updated Ansible architecture now looks like this:
+
+![image](https://user-images.githubusercontent.com/30922643/113473729-424dcc00-9463-11eb-9b9d-3361c729a010.png)
+
+*Optional step - Repeat once again
+Update your ansible playbook with some new Ansible tasks and go through the full checkout -> change codes -> commit -> PR -> merge -> build -> ansible-playbook cycle again to see how easily you can manage a servers fleet of any size with just one command!*
+
+## BLOCKERS
+
+## RESOURCES
+1. https://darey.io/
+2. https://docs.ansible.com/
+3. 
+
+
+
