@@ -171,15 +171,38 @@ The updated Ansible architecture now looks like this:
 *Optional step - Repeat once again, 
 Update your ansible playbook with some new Ansible tasks and go through the full checkout -> change codes -> commit -> PR -> merge -> build -> ansible-playbook cycle again to see how easily you can manage a servers fleet of any size with just one command!*
 
+**Creating a test file in /var/www on webservers**
+
 ![test-file](https://user-images.githubusercontent.com/30922643/113474000-fa2fa900-9464-11eb-9340-74bd9e613639.JPG)
 
+## PROJECT DEMONSTRATION
+https://drive.google.com/drive/folders/1qCtI-joKXGmr2p5DRPX13-ta3WoXyGQO?usp=sharing
+
+## GITHUB REPO LINK
+https://github.com/okikiolumide/ansible-config-mgt
 
 ## BLOCKERS
+1. Error when running ansible playbooks - Fatal: [172.31.3.218]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ec2-user@172.31.3.218: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
+- Solution: Remove "sudo" when running ansible playbook command i.e ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/inventory/dev.yml /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/playbooks/common.yml
+      
+ 2. Error when trying to ping host - Failed to connect to the host via ssh: Host key verification failed.
+- Solution: Added "host_key_checking = False" to ansible.cfg file
+
+3. Error in Jenkins when building - Couldn't find any revision to build. Verify the repository and branch configuration for this job
+- Solution: Edited Project configuration settings in Jenkins by changing the repository name from /master to /main
+
+4. Error when trying to copy public key to servers - Permission denied (public key)
+- Solution: I had to manually copy the keys to /.ssh/authorised_keys on each server
+
+
 
 ## RESOURCES
 1. https://darey.io/
 2. https://docs.ansible.com/
-3. 
+3. https://www.reddit.com/r/ansible/comments/g5djak/need_help_with_running_playbook/
+4. https://askubuntu.com/questions/311558/ssh-permission-denied-publickey
+5. https://www.digitalocean.com/
+6. https://phoenixnap.com/
 
 
 
