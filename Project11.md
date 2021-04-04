@@ -191,9 +191,6 @@ https://github.com/okikiolumide/ansible-config-mgt
 3. Error in Jenkins when building - Couldn't find any revision to build. Verify the repository and branch configuration for this job
 - Solution: Edited Project configuration settings in Jenkins by changing the repository name from `/master` to `/main`
 
-4. Error when trying to copy public key to servers - `Permission denied (public key)`
-- Solution: I had to manually copy the keys to /.ssh/authorised_keys on each server
-
 
 
 ## RESOURCES
