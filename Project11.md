@@ -182,16 +182,16 @@ https://drive.google.com/drive/folders/1qCtI-joKXGmr2p5DRPX13-ta3WoXyGQO?usp=sha
 https://github.com/okikiolumide/ansible-config-mgt
 
 ## BLOCKERS
-1. Error when running ansible playbooks - Fatal: [172.31.3.218]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ec2-user@172.31.3.218: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}
-- Solution: Remove "sudo" when running ansible playbook command i.e ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/inventory/dev.yml /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/playbooks/common.yml
+1. Error when running ansible playbooks - `Fatal: [172.31.3.218]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ec2-user@172.31.3.218: Permission denied (publickey,gssapi-keyex,gssapi-with-mic).", "unreachable": true}`
+- Solution: Remove "sudo" when running ansible playbook command i.e  ~~sudo~~ `ansible-playbook -i /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/inventory/dev.yml /var/lib/jenkins/jobs/ansible/builds/<build-number>/archive/playbooks/common.yml`
       
- 2. Error when trying to ping host - Failed to connect to the host via ssh: Host key verification failed.
-- Solution: Added "host_key_checking = False" to ansible.cfg file
+ 2. Error when trying to ping host - `Failed to connect to the host via ssh: Host key verification failed`.
+- Solution: Added `"host_key_checking = False"` to ansible.cfg file
 
 3. Error in Jenkins when building - Couldn't find any revision to build. Verify the repository and branch configuration for this job
-- Solution: Edited Project configuration settings in Jenkins by changing the repository name from /master to /main
+- Solution: Edited Project configuration settings in Jenkins by changing the repository name from `/master` to `/main`
 
-4. Error when trying to copy public key to servers - Permission denied (public key)
+4. Error when trying to copy public key to servers - `Permission denied (public key)`
 - Solution: I had to manually copy the keys to /.ssh/authorised_keys on each server
 
 
