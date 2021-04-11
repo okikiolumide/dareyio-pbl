@@ -49,6 +49,44 @@ Tree
         └── playbooks
             └── site.yml
             
+- Run ansible-playbook command against the dev environment
+Since you need to apply some tasks to your dev servers and wireshark is already installed - you can go ahead and create another playbook under static-assignments and name it common-del.yml. In this playbook, configure deletion of wireshark utility.
+
+                        ---
+                        - name: update web, nfs and db servers
+                          hosts: webservers, nfs, db
+                          remote_user: ec2-user
+                          become: yes
+                          become_user: root
+                          tasks:
+                          - name: delete wireshark
+                            yum:
+                              name: wireshark
+                              state: removed
+
+                        - name: update LB server
+                          hosts: lb
+                          remote_user: ubuntu
+                          become: yes
+                          become_user: root
+                          tasks:
+                          - name: delete wireshark
+                            apt:
+                              name: wireshark-qt
+                              state: absent
+                              autoremove: yes
+                              purge: yes
+                              autoclean: yes
+
+
+- update site.yml with - import_playbook: ../static-assignments/common-del.yml instead of common.yml and run it against dev servers:
+
+      ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/dev.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yaml
+
+Make sure that wireshark is deleted on all the servers by running wireshark --version
+
+Now you have learned how to use import_playbooks module and you have a ready solution to install/delete packages on multiple servers with just one command.
+
 
 
 ## GITHUB REPO
