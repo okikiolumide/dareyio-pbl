@@ -1,6 +1,6 @@
 # Ansible Refactoring & Static Assignments (Imports)
 
-In this project I will continue working with ansible-config-mgt repository and make some improvements to the code. This will involve refactoring of Ansible code, creating assignments, and learning how to use the imports functionality. 
+In this project some improvements would be made to the code in the ansible-config-mgt repository. This will involve refactoring of Ansible code, creating assignments, and learning how to use the imports functionality. 
 The Imports functionality is used to effectively utilize previously created playbooks in a new playbook, this improves the organisation of tasks and reuse the playbooks when needed. The Project Architecture is
 
 ![image](https://user-images.githubusercontent.com/30922643/115089168-9b107080-9f09-11eb-990a-4971ab7dfd20.png)
@@ -19,16 +19,20 @@ Refactoring is a general term in computer programming. It means making changes t
 
 ### Step 1 - Jenkins job enhancement
 
-- Go to your Jenkins-Ansible server and create a new directory called ansible-config-mgt - we will store there all artifacts after each build.
+- Go to the Jenkins-Ansible server and create a new directory called ansible-config-mgt for storing all artifacts after each build.
 
       mkdir /home/ubuntu/ansible-config-mgt
-- Change permissions to this directory, so Jenkins could save files there - 
+      
+- Change permissions to this directory, so Jenkins could save files there  
       
       chmod -R 0777 /home/ubuntu/ansible-config-mgt
+      
 - Go to Jenkins web console -> `Manage Jenkins` -> `Manage Plugins` -> on Available tab search for `Copy Artifact` and install this plugin without restarting Jenkins
-- Create a new Freestyle project (you have done it in Project 9) and name it `save_artifacts`.
-- This project will be triggered by completion of your existing ansible project. Configure it accordingly:
-- 
+
+- Create a new Freestyle project and name it `save_artifacts`.
+
+- This project will be triggered by completion of the existing ansible project. Configure it accordingly:
+
 ![image](https://user-images.githubusercontent.com/30922643/115089315-df037580-9f09-11eb-8189-0bc97118dd84.png)
 
 ![image](https://user-images.githubusercontent.com/30922643/115089272-d14df000-9f09-11eb-95f0-27dc539b2cfe.png)
@@ -37,20 +41,23 @@ Refactoring is a general term in computer programming. It means making changes t
 
 *Note: You can configure number of builds to keep in order to save space on the server, for example, you might want to keep only last 2 or 5 build results. You can also make this change to your ansible job.*
 
-- Test your set up by making some change in README.MD file inside your ansible-config-mgt repository (right inside master branch)
+- Test the set up by making some change in README.MD file inside the ansible-config-mgt repository (right inside master branch)
 
 ![image](https://user-images.githubusercontent.com/30922643/115089394-0b1ef680-9f0a-11eb-941c-8244ce1e3ef1.png)
 
 ![image](https://user-images.githubusercontent.com/30922643/115089364-fcd0da80-9f09-11eb-8c2a-1f0d76c6f414.png)
 
-- If both Jenkins jobs have completed one after another - you shall see your files inside /home/ubuntu/ansible-config-mgt directory and it will be updated with every commit to your master branch.
+- If both Jenkins jobs have completed one after another - files would be located inside /home/ubuntu/ansible-config-mgt directory and it will be updated with every commit to the master branch.
 
 
 ## Step 2 - Refactor Ansible code by importing other playbooks into site.yml
 
 - Within playbooks folder, create a new file and name it site.yml - This file will now be considered as an entry point into the entire infrastructure configuration. Other playbooks will be included here as a reference. In other words, site.yml will become a parent to all other playbooks that will be developed. Including common.yml that you created previously. Dont worry, you will understand more what this means shortly.
-- Create a new folder in root of the repository and name it static-assignments. The static-assignments folder is where all other children playbooks will be stored. This is merely for easy organization of your work. It is not an Ansible specific concept, therefore you can choose how you want to organize your work. You will see why the folder name has a prefix of static very soon. For now, just follow along.
+
+- Create a new folder in root of the repository and name it `static-assignments`. The static-assignments folder is where all other children playbooks will be stored for easy organization. 
+
 - Move common.yml file into the newly created static-assignments folder.
+
 - Inside site.yml file, import common.yml playbook.
 
       ---
@@ -73,7 +80,8 @@ Tree
 
    
 - Run ansible-playbook command against the dev environment
-Since you need to apply some tasks to your dev servers and wireshark is already installed - you can go ahead and create another playbook under static-assignments and name it common-del.yml. In this playbook, configure deletion of wireshark utility.
+
+- Create another playbook under static-assignments and name it common-del.yml to configure deletion of wireshark utility in the servers.
 
                         ---
                         - name: update web, nfs and db servers
