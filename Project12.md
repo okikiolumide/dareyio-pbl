@@ -112,7 +112,7 @@ Tree
 
 - update site.yml with - import_playbook: ../static-assignments/common-del.yml instead of common.yml and run it against dev servers:
 
-      ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/dev.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yaml
+      ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/dev.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yml
 
 - Make sure that wireshark is deleted on all the servers by running wireshark --version
 
@@ -201,7 +201,7 @@ Commit the changes, create a Pull Request and merge them to main branch, make su
 
 Now run the playbook against your uat inventory
 
-            ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/uat.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yaml
+            ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/uat.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yml
         
   ![image](https://user-images.githubusercontent.com/30922643/115086170-aa8cbb00-9f03-11eb-9d6d-cec9265db903.png)
 
