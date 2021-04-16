@@ -1,15 +1,20 @@
 # Ansible Refactoring & Static Assignments (Imports)
 
-In this project I will continue working with ansible-config-mgt repository and make some improvements to the code. This will inNow you need to refactor your Ansible code, create assignments, and learn how to use the imports functionality. Imports allow to effectively re-use previously created playbooks in a new playbook - it allows you to organize your tasks and reuse them when needed.
+In this project I will continue working with ansible-config-mgt repository and make some improvements to the code. This will involve refactoring of Ansible code, creating assignments, and learning how to use the imports functionality. 
+The Imports functionality is used to effectively utilize previously created playbooks in a new playbook, this improves the organisation of tasks and reuse the playbooks when needed.
 
 ## TASKS
+1. Enhancement of Project with Jenkins CI
+2. Refactor Ansible code by importing other playbooks
+3. Configure UAT Webservers with a role ‘Webserver’
+4. Reference ‘Webserver’ role
+5. Commit & Test
 
+## Project Implementation - Code Refactoring
 
-
-### Code Refactoring
 Refactoring is a general term in computer programming. It means making changes to the source code without changins expected behaviour of the software. The main idea of refactoring is to enhance code readability, increase maintainability and extensibility, reduce complexity, add proper comments without affecting the logic.
 
-Step 1 - Jenkins job enhancement
+### Step 1 - Jenkins job enhancement
 
 - Go to your Jenkins-Ansible server and create a new directory called ansible-config-mgt - we will store there all artifacts after each build.
 
@@ -83,9 +88,9 @@ Since you need to apply some tasks to your dev servers and wireshark is already 
 
       ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/dev.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yaml
 
-Make sure that wireshark is deleted on all the servers by running wireshark --version
+- Make sure that wireshark is deleted on all the servers by running wireshark --version
 
-Now you have learned how to use import_playbooks module and you have a ready solution to install/delete packages on multiple servers with just one command.
+
 
 
 
