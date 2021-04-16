@@ -45,6 +45,7 @@ Refactoring is a general term in computer programming. It means making changes t
 
 ![image](https://user-images.githubusercontent.com/30922643/115089394-0b1ef680-9f0a-11eb-941c-8244ce1e3ef1.png)
 
+
 ![image](https://user-images.githubusercontent.com/30922643/115089364-fcd0da80-9f09-11eb-8c2a-1f0d76c6f414.png)
 
 - If both Jenkins jobs have completed one after another - files would be located inside /home/ubuntu/ansible-config-mgt directory and it will be updated with every commit to the master branch.
@@ -115,6 +116,8 @@ Tree
       ansible-playbook -i /home/ubuntu/ansible-config-mgt/inventory/dev.yml /home/ubuntu/ansible-config-mgt/playbooks/site.yml
 
 - Make sure that wireshark is deleted on all the servers by running wireshark --version
+![image](https://user-images.githubusercontent.com/30922643/115090628-40791380-9f0d-11eb-8cc1-9366ddc6a4a0.png)
+
 
 ## Step 3 - Configure UAT Webservers with a role ‘Webserver’
 
