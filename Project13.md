@@ -53,12 +53,19 @@ Also, `with_first_found` implies that, looping through the list of files, the fi
 
       ansible-galaxy install geerlingguy.mysql 
       
+   ![apache](https://user-images.githubusercontent.com/30922643/116758578-47714d00-aa08-11eb-8ffe-cbbaf93dee08.PNG)
+![ansible-galaxy-mysql](https://user-images.githubusercontent.com/30922643/116758499-12fd9100-aa08-11eb-8b9f-2a185c3c3514.PNG)
+
 - Rename the folder to mysql
 
       mv geerlingguy.mysql/ mysql
       
 - Read `README.md` file, and edit roles configuration to use correct credentials for MySQL required for the tooling website.
  ![mysql-file](https://user-images.githubusercontent.com/30922643/115928087-7b36fa80-a47d-11eb-8a65-9dc4e9f26693.PNG)
+![mysql-pb-log](https://user-images.githubusercontent.com/30922643/116758675-7e476300-aa08-11eb-8f45-77808e2a297e.PNG)
+![mysql-db-status-after-pb-2](https://user-images.githubusercontent.com/30922643/116758700-88696180-aa08-11eb-8e5b-33c714cdbb92.PNG)
+
+
 
 - upload the changes into GitHub:
 
@@ -81,9 +88,12 @@ Also, `with_first_found` implies that, looping through the list of files, the fi
        
 - Install Apache Ansible Role
 
-       ansible-galaxy install geerlingguy.apache or 
+       ansible-galaxy install geerlingguy.apache 
+       
+    ![apache](https://user-images.githubusercontent.com/30922643/116758614-58ba5980-aa08-11eb-9139-243225eb3946.PNG)
 
-- Rename the folder to nginx
+
+- Rename the folder to apache
 
        mv geerlingguy.apache/ apache
        
@@ -119,10 +129,23 @@ Now make use of `env-vars\uat.yml file` to define which loadbalancer to use in U
       enable_nginx_lb: true
       load_balancer_is_required: true
 
+![run-pb](https://user-images.githubusercontent.com/30922643/116758443-f06b7800-aa07-11eb-8c61-3842c770eca1.PNG)
+![apache-status](https://user-images.githubusercontent.com/30922643/116758631-6374ee80-aa08-11eb-9c3a-3cc0e78cda08.PNG)
+
+
 ## IMPLEMENTATION VIDEO
 https://drive.google.com/drive/folders/12TiOI2OCK6_CWQtohnWj2ta0Db4FKkcL?usp=sharing
 
+## GITHUB BRANCH
+https://github.com/okikiolumide/ansible-config-mgt/tree/dynamic-assignments
+
 ## BLOCKER
+1. Error: `no file was found when using with_first_found....` while running dynamics assignment playbook
+>Solution: Used the ignore_error to skip error and run playbook successfully
 
 ## RESOURCES
-
+1. https://darey.io
+2. https://docs.ansible.com/
+3. https://galaxy.ansible.com/
+4. https://www.digitalocean.com/
+5. https://www.toptechskills.com/ansible-tutorials-courses/ansible-include-import-variables-tutorial-examples/
