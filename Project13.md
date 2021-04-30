@@ -73,13 +73,56 @@ Also, `with_first_found` implies that, looping through the list of files, the fi
 - Setup to roles so that `Nginx` or `Apache` can be selected as the load balancer
 - Install Nginx Ansible Role
 
-       ansible-galaxy install geerlingguy.nginx
+       ansible-galaxy install geerlingguy.nginx or ansible-galaxy collection install nginxinc.nginx_core
 
 - Rename the folder to nginx
 
        mv geerlingguy.nginx/ nginx
        
-- 
+- Install Apache Ansible Role
 
+       ansible-galaxy install geerlingguy.apache or 
+
+- Rename the folder to nginx
+
+       mv geerlingguy.apache/ apache
+       
+- Update both static-assignment and site.yml files to refer the roles
+- Add a condition to enable either one of Apache or Nginx since both cannot be selected at the same time
+    -  Declare a variable in `defaults/main.yml` file inside the Nginx and Apache roles and name each variables `enable_nginx_lb` and `enable_apache_lb` respectively.
+    -  Set both values to false i.e `enable_nginx_lb: false` and `enable_apache_lb: false`.
+    -  Declare another variable in `defaults/main.yml` file inside both roles as `load_balancer_is_required` and set its value to `false`
     
+    ![var-apache](https://user-images.githubusercontent.com/30922643/116752264-3bcc5900-a9fd-11eb-87ba-a8bfb4651fe9.PNG)
+    ![var-nginx](https://user-images.githubusercontent.com/30922643/116752276-40910d00-a9fd-11eb-871f-395ee5abe98e.PNG)
+
+- Update both assignment and site.yml files as follows
+  
+ `loadbalancers.yml` file
+
+    - hosts: lb
+      roles:
+        - { role: nginx, when: enable_nginx_lb and load_balancer_is_required }
+        - { role: apache, when: enable_apache_lb and load_balancer_is_required }
+
+`site.yml` file
+
+     - name: Loadbalancers assignment
+       hosts: lb
+         - import_playbook: ../static-assignments/loadbalancers.yml
+        when: load_balancer_is_required  
+        
+Now make use of `env-vars\uat.yml file` to define which loadbalancer to use in UAT environment by setting respective environmental variable to `true`
+
+- Activate the load balancer, and enable nginx by setting these in the respective environment’s env-vars file.
+
+      enable_nginx_lb: true
+      load_balancer_is_required: true
+
+## IMPLEMENTATION VIDEO
+https://drive.google.com/drive/folders/12TiOI2OCK6_CWQtohnWj2ta0Db4FKkcL?usp=sharing
+
+## BLOCKER
+
+## RESOURCES
 
