@@ -70,3 +70,16 @@ Also, `with_first_found` implies that, looping through the list of files, the fi
 
 ## Setting up Load Balancer roles
 
+- Setup to roles so that `Nginx` or `Apache` can be selected as the load balancer
+- Install Nginx Ansible Role
+
+       ansible-galaxy install geerlingguy.nginx
+
+- Rename the folder to nginx
+
+       mv geerlingguy.nginx/ nginx
+       
+- 
+
+    
+
