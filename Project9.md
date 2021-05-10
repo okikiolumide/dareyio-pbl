@@ -14,22 +14,21 @@ This project will enhance the architecture prepared in Project 8 by adding a Jen
 - Create an AWS EC2 server based on Ubuntu Server 20.04 LTS and name it “Jenkins”
 - Install JDK (since Jenkins is a Java-based application)
 
-> sudo apt update 
+      sudo apt update 
 
-> sudo apt install default-jdk-headless
+      sudo apt install default-jdk-headless
 
  <img src="img/20210315_231929961_iOS.jpg" width="600" height="600">
  
  - Install Jenkins
 
-> wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+       wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
 
-> sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > \
-    /etc/apt/sources.list.d/jenkins.list'
+       sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
     
-> sudo apt update 
+       sudo apt update 
 
-> sudo apt-get install jenkins
+       sudo apt-get install jenkins
 
 <img src="img/20210315_233011197_iOS.jpg" width="600" height="600">
 
